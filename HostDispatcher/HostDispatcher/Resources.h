@@ -5,7 +5,7 @@ class Resources
 private:
 	
 public:
-	int Printers, Scanners, Modems, Driver;
+	unsigned int Printers, Scanners, Modems, Driver;
 
 	Resources(int newPrinterCount = 0, int newScannerCount = 0, int newModemCount = 0,int newDriverCount = 0);
 
