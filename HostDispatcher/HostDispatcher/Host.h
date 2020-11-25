@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <queue>
+#include <list>
 #include "Process.h"
 #include "Resources.h"
 using namespace std;
@@ -17,25 +18,23 @@ private:
 	int total_drives = 2;
 
 	queue<Process> input_queue;
-	queue<Process> realTime_queue;
-	queue<Process> user_queue;
-	queue<Process> pri1_queue;
-	queue<Process> pri2_queue;
-	queue<Process> pri3_queue;
 
+	Process curr_proc();
 	Resources rsrcs;
 
 	
 public:
-
-	unsigned int timer;
-	Process current_proc;
+	queue<Process> realTime_queue;
+	queue<Process> pri1_queue;
+	queue<Process> pri2_queue;
+	queue<Process> pri3_queue;
+	int timer;
+	Process* current_proc;
 	void print_usage();
 	void check_input_queue();
 	bool complete();
 	void initialize_system();
-	void fill_input_queue();
-	void check_user_queue();
+	void fill_input_queue(list<Process> proc_list);
 	void handle_curr_proc();
 	void assign_curr_proc();
 

@@ -2,8 +2,6 @@
 #include "Process.h"
 class Resources
 {
-private:
-	
 public:
 	unsigned int Printers, Scanners, Modems, Driver;
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "Memory.h"
 class Process
-
 {
 public:
 	int process_id, arrivalTime, priority, processTime, mbytes, remCPUTime, printersReq, scannersReq, modemsReq, driversReq;
