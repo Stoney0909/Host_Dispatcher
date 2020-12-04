@@ -22,10 +22,8 @@ int main() {
 	string line, str;
 	ifstream myfile;
 	
-	myfile.open("C:/Users/Owner/Documents/Process.txt"); // create a list of processes in your computer directory 
-	    //12 0 1 64 0 0 0 0 9 10      has to be in this format
-		//12 1 2 128 1 0 0 1 9 10
-		//13 3 6 128 1 0 1 2 9 10
+	myfile.open("File.txt"); // create a list of processes in your computer directory 
+	   
 	if (!myfile.is_open()) {
 		perror("Error open");
 		exit(EXIT_FAILURE);
@@ -84,7 +82,7 @@ int main() {
 
 		}
 		Process* p = new Process(process_id, arrivalTime, priority, processTime, mbytes, remCPUTime, printersReq, scannersReq, modemsReq, driversReq);
-		proc_list.push_back(*p);
+		proc_list.push_back(*p); //Pushing them into the list
 		while (!nums.empty())
 		{
 			nums.pop_back();
