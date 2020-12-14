@@ -14,7 +14,7 @@ using namespace std;
 int main() {
 	//Call in procs and add them to the list
 
-	list<Process*> proc_list;
+	list<Process> proc_list;
 	vector <int> nums;
 	Host* host = new Host();
 
@@ -82,7 +82,7 @@ int main() {
 
 		}
 		Process* p = new Process(process_id, arrivalTime, priority, processTime, mbytes, remCPUTime, printersReq, scannersReq, modemsReq, driversReq);
-		proc_list.push_back(p); //Pushing them into the list
+		proc_list.push_back(*p); //Pushing them into the list
 		while (!nums.empty())
 		{
 			nums.pop_back();

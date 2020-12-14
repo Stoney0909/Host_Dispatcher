@@ -17,9 +17,9 @@ private:
 	int total_modems = 1;
 	int total_drives = 2;
 
-	queue<Process*> input_queue;
+	queue<Process> input_queue;
 
-	Process* curr_proc;
+	Process curr_proc;
 	Resources rsrcs;
 
 	
@@ -34,7 +34,7 @@ public:
 	void check_input_queue();
 	bool complete();
 	void initialize_system();
-	void fill_input_queue(list<Process*> proc_list);
+	void fill_input_queue(list<Process> proc_list);
 	void handle_curr_proc();
 	void assign_curr_proc();
 
