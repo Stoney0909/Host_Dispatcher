@@ -59,4 +59,9 @@ void Host::initialize_system()
 
 void Host::fill_input_queue(list<Process> proc_list)
 {
+	for (int i = 0; i < proc_list.size(); i++)
+	{
+		input_queue.push(proc_list.front());
+		proc_list.pop_front();
+	}
 }

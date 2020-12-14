@@ -18,7 +18,7 @@ int main() {
 	host->initialize_system();
 
 	bool complete = false;
-	while (host->timer < 20)
+	while (!host->complete())
 	{
 		//host->check_input_queue();
 
@@ -33,7 +33,9 @@ int main() {
 		//}
 
 		this_thread::sleep_for(chrono::seconds(1));
+
 		cout << "Sleep " << host->timer << endl;
+
 		host->timer++;
 
 	}
