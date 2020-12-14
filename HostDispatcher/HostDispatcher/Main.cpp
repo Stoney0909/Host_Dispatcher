@@ -18,7 +18,7 @@ int main() {
 	vector <int> nums;
 	Host* host = new Host();
 
-	host->fill_input_queue(proc_list);
+	
 	string line, str;
 	ifstream myfile;
 	
@@ -88,7 +88,9 @@ int main() {
 			nums.pop_back();
 		}
 	}
+
 	host->initialize_system();
+	host->fill_input_queue(proc_list);
 
 	bool complete = false;
 	while (!host->complete())
