@@ -1,5 +1,7 @@
 #include "Host.h"
 
+
+
 void Host::check_input_queue()
 {
 	for (int i = 0; i < input_queue.size(); i++)

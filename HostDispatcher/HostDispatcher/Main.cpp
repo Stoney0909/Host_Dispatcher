@@ -14,7 +14,7 @@ using namespace std;
 int main() {
 	//Call in procs and add them to the list
 
-	list<Process> proc_list;
+	list<Process*> proc_list;
 	vector <int> nums;
 	Host* host = new Host();
 
@@ -82,7 +82,7 @@ int main() {
 
 		}
 		Process* p = new Process(process_id, arrivalTime, priority, processTime, mbytes, remCPUTime, printersReq, scannersReq, modemsReq, driversReq);
-		proc_list.push_back(*p); //Pushing them into the list
+		proc_list.push_back(p); //Pushing them into the list
 		while (!nums.empty())
 		{
 			nums.pop_back();
@@ -95,17 +95,17 @@ int main() {
 	bool complete = false;
 	while (!host->complete())
 	{
-	//	//host->check_input_queue();
+		host->check_input_queue();
 
-	//	//if (host->current_proc)
-	//	//{
-	//	//	host->handle_curr_proc();
-	//	//}
+		if (host->current_proc)
+		{
+			host->handle_curr_proc();
+		}
 
-	//	//if ((host->realTime_queue.empty() || host->pri1_queue.empty() || host->pri2_queue.empty() || !host->pri3_queue.empty()) && (!host->current_proc))
-	//	//{
-	//	//	host->assign_curr_proc();
-	//	//}
+		if ((host->realTime_queue.empty() || host->pri1_queue.empty() || host->pri2_queue.empty() || !host->pri3_queue.empty()) && (!host->current_proc))
+		{
+			host->assign_curr_proc();
+		}
 
 		this_thread::sleep_for(chrono::seconds(1));
 
