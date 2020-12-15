@@ -66,6 +66,10 @@ bool Host::complete()
 	{
 		return false;
 	}
+	else if(input_queue.size() > 0)
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -94,7 +98,7 @@ void Host::handle_curr_proc()
 	{
 		rsrcs.freeResources(current_proc);
 		totalMemory.unallocateMemory(current_proc->mbytes);
-		current_proc = new Process();
+		current_proc = nullptr;
 
 	}
 	else

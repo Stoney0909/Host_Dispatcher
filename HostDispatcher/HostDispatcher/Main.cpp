@@ -89,6 +89,7 @@ int main() {
 		}
 	}
 
+
 	host->initialize_system();
 	host->fill_input_queue(proc_list);
 
