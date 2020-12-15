@@ -41,7 +41,7 @@ void Host::check_input_queue()
 			input_queue.pop();
 		}
 	}
-	
+
 }
 
 bool Host::complete()
@@ -89,7 +89,7 @@ void Host::fill_input_queue(list<Process> proc_list)
 
 void Host::handle_curr_proc()
 {
-	
+
 	if (current_proc->remCPUTime == 0)
 	{
 		rsrcs.freeResources(current_proc);
@@ -138,15 +138,15 @@ void Host::handle_curr_proc()
 		{
 			current_proc->remCPUTime--;
 		}
-		
-		
+
+
 	}
 }
 
 void Host::assign_curr_proc()
 {
 	if (!realTime_queue.empty())
-	{		
+	{
 		current_proc = new Process(realTime_queue.front());
 		rsrcs.allocateResources(current_proc);
 		if (!totalMem.allocateMemory(current_proc))

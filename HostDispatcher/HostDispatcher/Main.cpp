@@ -18,12 +18,12 @@ int main() {
 	vector <int> nums;
 	Host* host = new Host();
 
-	
+
 	string line, str;
 	ifstream myfile;
-	
-	myfile.open("File.txt"); // create a list of processes in your computer directory 
-	   
+
+	myfile.open("File.txt"); // create a list of processes in your computer directory
+
 	if (!myfile.is_open()) {
 		perror("Error open");
 		exit(EXIT_FAILURE);
@@ -31,11 +31,11 @@ int main() {
 	while (getline(myfile, line)) {
 		int process_id, arrivalTime, priority, processTime, mbytes, remCPUTime, printersReq, scannersReq, modemsReq, driversReq;
 		istringstream ss(line);
-		string word; 
+		string word;
 		while (ss >> word)
 		{
 			nums.push_back(stoi(word));//Putting into an array
-			cout << word << "\n";
+			//cout << word << "\n";
 		}
 		for (int i = 0; i < nums.size(); i++) //Setting the argument to the number
 		{
@@ -97,7 +97,7 @@ int main() {
 	{
 		host->check_input_queue();
 
-		
+
 
 		if (host->current_proc)
 		{
