@@ -29,7 +29,19 @@ void Host::check_input_queue()
 	}
 	
 }
-
+void Host::print_usage()
+{
+	cout << "Process ID" << curr_proc.process_id << endl;
+	cout << "Process Arrival Time" << curr_proc.arrivalTime << endl;
+	cout <<"Process priority"<< curr_proc.priority << endl;
+	cout <<"Process processTime"<< curr_proc.processTime << endl;
+	cout <<"Process remaining CPUTime"<< curr_proc.remCPUTime<< endl;
+	cout <<"Process megaByte"<< curr_proc.mbytes << endl;
+	cout <<"Process  " << curr_proc.driversReq << endl;
+	cout << "Process Scanners " << curr_proc.scannersReq << endl;
+	cout << "Process  " << curr_proc.printersReq << endl;
+	cout << "Process memoryBlock" << curr_proc.modemsReq << endl;
+}
 bool Host::complete()
 {
 	if (realTime_queue.size() > 0)
