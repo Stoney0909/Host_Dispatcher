@@ -105,7 +105,7 @@ int main() {
 		{
 			host->handle_curr_proc();
 		}
-
+		
 		if ((!host->realTime_queue.empty() || !host->pri1_queue.empty() || !host->pri2_queue.empty() || !host->pri3_queue.empty()) && (!host->current_proc))
 		{
 			host->assign_curr_proc();
@@ -118,7 +118,9 @@ int main() {
 		cout << "Sleep " << host->timer << endl;
 
 		host->timer++;
-
+		cout << "---------------------------" << endl;
+		cout << endl;
 	}
+	cout << "Program Finish" << endl;
 	return 0;
 }

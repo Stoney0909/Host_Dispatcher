@@ -151,6 +151,7 @@ void Host::assign_curr_proc()
 {
 	if (!realTime_queue.empty())
 	{
+		
 		current_proc = new Process(realTime_queue.front());
 		rsrcs.allocateResources(current_proc);
 		if (!totalMemory.allocateMemory(current_proc->mbytes))
@@ -159,7 +160,7 @@ void Host::assign_curr_proc()
 		};
 		realTime_queue.pop();
 	}
-	else if (!pri1_queue.empty())
+	if (!pri1_queue.empty())
 	{
 		current_proc = new Process(pri1_queue.front());
 		rsrcs.allocateResources(current_proc);
@@ -169,17 +170,17 @@ void Host::assign_curr_proc()
 		};
 		pri1_queue.pop();
 	}
-	else if (!pri2_queue.empty())
+	if (!pri2_queue.empty())
 	{
-		current_proc = new Process(pri1_queue.front());
+		current_proc = new Process(pri2_queue.front());
 		rsrcs.allocateResources(current_proc);
 		if (!totalMemory.allocateMemory(current_proc->mbytes))
 		{
 			cout << "Not enough memory for allocation!" << endl;
 		};
-		pri1_queue.pop();
+		pri2_queue.pop();
 	}
-	else if(!pri3_queue.empty())
+	if(!pri3_queue.empty())
 	{
 		current_proc = new Process(pri3_queue.front());
 		rsrcs.allocateResources(current_proc);
