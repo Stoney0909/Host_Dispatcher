@@ -8,7 +8,5 @@ public:
 	Process();
 	Process(Process* proc);
 	Process(int process_id, int arrivalTime, int priority, int processTime, int mbytes, int remCPUTime, int printersReq, int scannersReq, int modemsReq, int driversReq);
-
-
 };
 

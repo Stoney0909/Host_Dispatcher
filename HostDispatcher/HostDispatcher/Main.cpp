@@ -110,8 +110,11 @@ int main() {
 		{
 			host->assign_curr_proc();
 		}
-
-		host->print_usage();
+		if (host->current_proc)
+		{
+			host->print_usage();
+		}
+		
 
 		this_thread::sleep_for(chrono::seconds(1));
 
