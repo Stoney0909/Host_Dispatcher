@@ -2,21 +2,21 @@
 
 
 
-void Host::print_usage()
+void Host::print_usage() //Prints the current process 
 {
-	cout << "Process ID" << current_proc->process_id << endl;
-	cout << "Process Arrival Time" << current_proc->arrivalTime << endl;
-	cout << "Process priority" << current_proc->priority << endl;
-	cout << "Process processTime" << current_proc->processTime << endl;
-	cout << "Process remaining CPUTime" << current_proc->remCPUTime << endl;
-	cout << "Process megaByte" << current_proc->mbytes << endl;
-	cout << "Process  " << current_proc->driversReq << endl;
-	cout << "Process Scanners " << current_proc->scannersReq << endl;
-	cout << "Process  " << current_proc->printersReq << endl;
-	cout << "Process memoryBlock" << current_proc->modemsReq << endl;
+	cout << "Process ID:" << current_proc->process_id << endl;
+	cout << "Process Arrival Time:" << current_proc->arrivalTime << endl;
+	cout << "Process priority:" << current_proc->priority << endl;
+	cout << "Process processTime:" << current_proc->processTime << endl;
+	cout << "Process remaining CPUTime:" << current_proc->remCPUTime << endl;
+	cout << "Process megaByte:" << current_proc->mbytes << endl;
+	cout << "Drivers:" << current_proc->driversReq << endl;
+	cout << "Scanners:" << current_proc->scannersReq << endl;
+	cout << "Printers:" << current_proc->printersReq << endl;
+	cout << "Modems:" << current_proc->modemsReq << endl;
 }
 
-void Host::check_input_queue()
+void Host::check_input_queue()//Sorts out input into the proper queue
 {
 	for (int i = 0; i < input_queue.size(); i++)
 	{
@@ -44,7 +44,7 @@ void Host::check_input_queue()
 
 }
 
-bool Host::complete()
+bool Host::complete()//Checks if the program has completed all tasks
 {
 	if (realTime_queue.size() > 0)
 	{
@@ -73,7 +73,7 @@ bool Host::complete()
 	return true;
 }
 
-void Host::initialize_system()
+void Host::initialize_system()//Creates the system variables
 {
 	totalMemory.mem = total_memory;
 	rsrcs.Driver = total_drives;
@@ -82,7 +82,7 @@ void Host::initialize_system()
 	rsrcs.Scanners = total_scanners;
 }
 
-void Host::fill_input_queue(list<Process> proc_list)
+void Host::fill_input_queue(list<Process> proc_list)//Takes proc list and puts it into input queue
 {
 	while (!proc_list.empty())
 	{
@@ -95,7 +95,7 @@ void Host::fill_input_queue(list<Process> proc_list)
 void Host::handle_curr_proc()
 {
 
-	if (current_proc->remCPUTime == 0)
+	if (current_proc->remCPUTime == 0)//unallocateds resources and memory and sets curr proc to null at the end of the process
 	{
 		rsrcs.freeResources(current_proc);
 		totalMemory.unallocateMemory(current_proc->mbytes);
@@ -106,7 +106,7 @@ void Host::handle_curr_proc()
 	{
 		current_proc->remCPUTime;
 		check_input_queue();
-		if (current_proc->priority > 0 && realTime_queue.size() > 0)
+		if (current_proc->priority > 0 && realTime_queue.size() > 0)//Checks to see if there are higher priority procs
 		{
 			if (current_proc->priority < 3)
 			{
@@ -148,7 +148,7 @@ void Host::handle_curr_proc()
 	}
 }
 
-void Host::assign_curr_proc()
+void Host::assign_curr_proc()//Checks queues for procs and sets the curr proc to the highest priority
 {
 	if (!realTime_queue.empty())
 	{

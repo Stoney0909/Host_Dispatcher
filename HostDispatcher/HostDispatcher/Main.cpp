@@ -97,7 +97,7 @@ int main() {
 
 	bool complete = false;
 
-	while (!host->complete())
+	while (!host->complete())//Running of the procs
 	{
 		host->check_input_queue();
 
@@ -110,13 +110,14 @@ int main() {
 		{
 			host->assign_curr_proc();
 		}
+
 		if (host->current_proc)
 		{
 			host->print_usage();
 		}
 		
 
-		this_thread::sleep_for(chrono::seconds(1));
+		this_thread::sleep_for(chrono::seconds(1));//Wait timer
 
 		cout << "Sleep " << host->timer << endl;
 
@@ -124,6 +125,7 @@ int main() {
 		cout << "---------------------------" << endl;
 		cout << endl;
 	}
+
 	cout << "Program Finish" << endl;
 	return 0;
 }
