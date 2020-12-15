@@ -1,17 +1,22 @@
 #include "Memory.h"
 
-bool Memory::allocateMemory(Process* proc)
+Memory::Memory()
+{
+	mem = 0;
+}
+
+bool Memory::allocateMemory(int memory)
 {
 
-	if (allocated >= proc->mbytes)
+	if (mem >= memory)
 	{
-		allocated -= proc->mbytes;
+		mem -= memory;
 		return true;
 	}
 	return false;
 }
 
-void Memory::unallocateMemory(Process* proc)
+void Memory::unallocateMemory(int memory)
 {
-	allocated += proc->mbytes;
+	mem += memory;
 }

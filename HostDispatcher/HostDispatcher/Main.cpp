@@ -92,12 +92,13 @@ int main() {
 	host->initialize_system();
 	host->fill_input_queue(proc_list);
 
+	cout << "Running Program" << endl;
+
 	bool complete = false;
+
 	while (!host->complete())
 	{
 		host->check_input_queue();
-
-
 
 		if (host->current_proc)
 		{

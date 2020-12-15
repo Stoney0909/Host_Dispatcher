@@ -3,12 +3,11 @@
 class Memory
 {
 public:
-	unsigned int offset, size;
-	int allocated;
-	Memory* prev;
-	Memory* next;
+	int mem;
+
 	
-	bool allocateMemory(Process* proc);
-	void unallocateMemory(Process* proc);
+	Memory();
+	bool allocateMemory(int memory);
+	void unallocateMemory(int memory);
 };
 

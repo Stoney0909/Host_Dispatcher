@@ -71,7 +71,7 @@ bool Host::complete()
 
 void Host::initialize_system()
 {
-	totalMem.allocated = total_memory;
+	totalMemory.mem = total_memory;
 	rsrcs.Driver = total_drives;
 	rsrcs.Modems = total_modems;
 	rsrcs.Printers = total_printers;
@@ -93,7 +93,7 @@ void Host::handle_curr_proc()
 	if (current_proc->remCPUTime == 0)
 	{
 		rsrcs.freeResources(current_proc);
-		totalMem.unallocateMemory(current_proc);
+		totalMemory.unallocateMemory(current_proc->mbytes);
 		current_proc = new Process();
 
 	}
@@ -106,7 +106,7 @@ void Host::handle_curr_proc()
 			if (current_proc->priority < 3)
 			{
 				rsrcs.freeResources(current_proc);
-				totalMem.unallocateMemory(current_proc);
+				totalMemory.unallocateMemory(current_proc-> mbytes);
 				current_proc->priority--;
 				input_queue.push(*current_proc);
 				assign_curr_proc();
@@ -117,7 +117,7 @@ void Host::handle_curr_proc()
 			if (current_proc->priority < 3)
 			{
 				rsrcs.freeResources(current_proc);
-				totalMem.unallocateMemory(current_proc);
+				totalMemory.unallocateMemory(current_proc->mbytes);
 				current_proc->priority--;
 				input_queue.push(*current_proc);
 				assign_curr_proc();
@@ -128,7 +128,7 @@ void Host::handle_curr_proc()
 			if (current_proc->priority < 3)
 			{
 				rsrcs.freeResources(current_proc);
-				totalMem.unallocateMemory(current_proc);
+				totalMemory.unallocateMemory(current_proc->mbytes);
 				current_proc->priority--;
 				input_queue.push(*current_proc);
 				assign_curr_proc();
@@ -149,7 +149,7 @@ void Host::assign_curr_proc()
 	{
 		current_proc = new Process(realTime_queue.front());
 		rsrcs.allocateResources(current_proc);
-		if (!totalMem.allocateMemory(current_proc))
+		if (!totalMemory.allocateMemory(current_proc->mbytes))
 		{
 			cout << "Not enough memory for allocation!" << endl;
 		};
@@ -159,7 +159,7 @@ void Host::assign_curr_proc()
 	{
 		current_proc = new Process(pri1_queue.front());
 		rsrcs.allocateResources(current_proc);
-		if (!totalMem.allocateMemory(current_proc))
+		if (!totalMemory.allocateMemory(current_proc->mbytes))
 		{
 			cout << "Not enough memory for allocation!" << endl;
 		};
@@ -169,7 +169,7 @@ void Host::assign_curr_proc()
 	{
 		current_proc = new Process(pri1_queue.front());
 		rsrcs.allocateResources(current_proc);
-		if (!totalMem.allocateMemory(current_proc))
+		if (!totalMemory.allocateMemory(current_proc->mbytes))
 		{
 			cout << "Not enough memory for allocation!" << endl;
 		};
@@ -179,7 +179,7 @@ void Host::assign_curr_proc()
 	{
 		current_proc = new Process(pri3_queue.front());
 		rsrcs.allocateResources(current_proc);
-		if (!totalMem.allocateMemory(current_proc))
+		if (!totalMemory.allocateMemory(current_proc->mbytes))
 		{
 			cout << "Not enough memory for allocation!" << endl;
 		};

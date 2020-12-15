@@ -20,7 +20,7 @@ private:
 	queue<Process> input_queue;
 
 	Resources rsrcs;
-	Memory totalMem;
+	Memory totalMemory = Memory();
 
 	
 public:
