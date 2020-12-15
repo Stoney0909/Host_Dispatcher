@@ -2,6 +2,20 @@
 
 
 
+void Host::print_usage()
+{
+	cout << "Process ID" << current_proc->process_id << endl;
+	cout << "Process Arrival Time" << current_proc->arrivalTime << endl;
+	cout << "Process priority" << current_proc->priority << endl;
+	cout << "Process processTime" << current_proc->processTime << endl;
+	cout << "Process remaining CPUTime" << current_proc->remCPUTime << endl;
+	cout << "Process megaByte" << current_proc->mbytes << endl;
+	cout << "Process  " << current_proc->driversReq << endl;
+	cout << "Process Scanners " << current_proc->scannersReq << endl;
+	cout << "Process  " << current_proc->printersReq << endl;
+	cout << "Process memoryBlock" << current_proc->modemsReq << endl;
+}
+
 void Host::check_input_queue()
 {
 	for (int i = 0; i < input_queue.size(); i++)
@@ -77,5 +91,48 @@ void Host::fill_input_queue(list<Process> proc_list)
 	{
 		input_queue.push(proc_list.front());
 		proc_list.pop_front();
+	}
+}
+
+void Host::handle_curr_proc()
+{
+	if (current_proc->remCPUTime == 0)
+	{
+		current_proc = new Process();
+	}
+	else
+	{
+		current_proc->remCPUTime--;
+		check_input_queue();
+		if (current_proc->priority > 0 && realTime_queue.size() > 0)
+		{
+			if (current_proc->priority < 3)
+			{
+				current_proc->priority--;
+				input_queue.push(*current_proc);
+				assign_curr_proc();
+			}
+		}
+		if (current_proc->priority > 1 && pri1_queue.size() > 0)
+		{
+			if (current_proc->priority < 3)
+			{
+				current_proc->priority--;
+				input_queue.push(*current_proc);
+				assign_curr_proc();
+			}
+		}
+		if (current_proc->priority > 2 && pri2_queue.size() > 0)
+		{
+			if (current_proc->priority < 3)
+			{
+				current_proc->priority--;
+				input_queue.push(*current_proc);
+				assign_curr_proc();
+			}
+		}
+
+
+		
 	}
 }
