@@ -35,7 +35,7 @@ int main() {
 		while (ss >> word)
 		{
 			nums.push_back(stoi(word));//Putting into an array
-			cout << word << "\n";
+			//cout << word << "\n";
 		}
 		for (int i = 0; i < nums.size(); i++) //Setting the argument to the number
 		{
@@ -81,7 +81,7 @@ int main() {
 			}
 
 		}
-		Process* p = new Process(process_id, arrivalTime, priority, processTime, mbytes, remCPUTime, printersReq, scannersReq, modemsReq, driversReq);
+		Process * p = new Process(process_id, arrivalTime, priority, processTime, mbytes, remCPUTime, printersReq, scannersReq, modemsReq, driversReq);
 		proc_list.push_back(*p); //Pushing them into the list
 		while (!nums.empty())
 		{

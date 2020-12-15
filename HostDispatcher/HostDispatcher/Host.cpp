@@ -124,3 +124,8 @@ void Host::handle_curr_proc()
 		
 	}
 }
+
+
+void Host::assign_curr_proc()
+{
+}
