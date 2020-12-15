@@ -67,3 +67,40 @@ void Host::fill_input_queue(list<Process> proc_list)
 		proc_list.pop_front();
 	}
 }
+
+void Host::handle_curr_proc()
+{
+	if (current_proc->remCPUTime == 0)
+	{
+		current_proc = new Process();
+	}
+	else
+	{
+		check_input_queue();
+		if (current_proc->priority > 0 && realTime_queue.size() > 0)
+		{
+			if (current_proc->priority < 3)
+			{
+				current_proc->priority--;
+				input_queue.push(*current_proc);
+			}
+		}
+		if (current_proc->priority > 1 && pri1_queue.size() > 0)
+		{
+			if (current_proc->priority < 3)
+			{
+				current_proc->priority--;
+				input_queue.push(*current_proc);
+			}
+		}
+		if (current_proc->priority > 2 && pri2_queue.size() > 0)
+		{
+			if (current_proc->priority < 3)
+			{
+				current_proc->priority--;
+				input_queue.push(*current_proc);
+			}
+		}
+		
+	}
+}

@@ -19,8 +19,8 @@ private:
 
 	queue<Process> input_queue;
 
-	Process curr_proc;
 	Resources rsrcs;
+	Memory totalMem;
 
 	
 public:
