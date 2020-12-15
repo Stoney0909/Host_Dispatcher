@@ -71,6 +71,11 @@ bool Host::complete()
 
 void Host::initialize_system()
 {
+	totalMem.allocated = total_memory;
+	rsrcs.Driver = total_drives;
+	rsrcs.Modems = total_modems;
+	rsrcs.Printers = total_printers;
+	rsrcs.Scanners = total_scanners;
 }
 
 void Host::fill_input_queue(list<Process> proc_list)
@@ -84,43 +89,101 @@ void Host::fill_input_queue(list<Process> proc_list)
 
 void Host::handle_curr_proc()
 {
+	
 	if (current_proc->remCPUTime == 0)
 	{
+		rsrcs.freeResources(current_proc);
+		totalMem.unallocateMemory(current_proc);
 		current_proc = new Process();
+
 	}
 	else
 	{
-		current_proc->remCPUTime--;
+		current_proc->remCPUTime;
 		check_input_queue();
 		if (current_proc->priority > 0 && realTime_queue.size() > 0)
 		{
 			if (current_proc->priority < 3)
 			{
+				rsrcs.freeResources(current_proc);
+				totalMem.unallocateMemory(current_proc);
 				current_proc->priority--;
 				input_queue.push(*current_proc);
 				assign_curr_proc();
 			}
 		}
-		if (current_proc->priority > 1 && pri1_queue.size() > 0)
+		else if (current_proc->priority > 1 && pri1_queue.size() > 0)
 		{
 			if (current_proc->priority < 3)
 			{
+				rsrcs.freeResources(current_proc);
+				totalMem.unallocateMemory(current_proc);
 				current_proc->priority--;
 				input_queue.push(*current_proc);
 				assign_curr_proc();
 			}
 		}
-		if (current_proc->priority > 2 && pri2_queue.size() > 0)
+		else if (current_proc->priority > 2 && pri2_queue.size() > 0)
 		{
 			if (current_proc->priority < 3)
 			{
+				rsrcs.freeResources(current_proc);
+				totalMem.unallocateMemory(current_proc);
 				current_proc->priority--;
 				input_queue.push(*current_proc);
 				assign_curr_proc();
 			}
 		}
-
-
+		else
+		{
+			current_proc->remCPUTime--;
+		}
+		
 		
 	}
+}
+
+void Host::assign_curr_proc()
+{
+	if (!realTime_queue.empty())
+	{		
+		current_proc = new Process(realTime_queue.front());
+		rsrcs.allocateResources(current_proc);
+		if (!totalMem.allocateMemory(current_proc))
+		{
+			cout << "Not enough memory for allocation!" << endl;
+		};
+		realTime_queue.pop();
+	}
+	else if (!pri1_queue.empty())
+	{
+		current_proc = new Process(pri1_queue.front());
+		rsrcs.allocateResources(current_proc);
+		if (!totalMem.allocateMemory(current_proc))
+		{
+			cout << "Not enough memory for allocation!" << endl;
+		};
+		pri1_queue.pop();
+	}
+	else if (!pri2_queue.empty())
+	{
+		current_proc = new Process(pri1_queue.front());
+		rsrcs.allocateResources(current_proc);
+		if (!totalMem.allocateMemory(current_proc))
+		{
+			cout << "Not enough memory for allocation!" << endl;
+		};
+		pri1_queue.pop();
+	}
+	else if(!pri3_queue.empty())
+	{
+		current_proc = new Process(pri3_queue.front());
+		rsrcs.allocateResources(current_proc);
+		if (!totalMem.allocateMemory(current_proc))
+		{
+			cout << "Not enough memory for allocation!" << endl;
+		};
+		pri3_queue.pop();
+	}
+
 }

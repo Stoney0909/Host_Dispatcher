@@ -1,4 +1,5 @@
 #pragma once
+#include "Process.h"
 class Memory
 {
 public:
@@ -7,7 +8,7 @@ public:
 	Memory* prev;
 	Memory* next;
 	
-
-
+	bool allocateMemory(Process* proc);
+	void unallocateMemory(Process* proc);
 };
 
